@@ -19,12 +19,12 @@ class GlobalExceptionHandler {
                                                                    HttpServletRequest request) {
         log.warn("No generation data found: {}", ex.getMessage(), ex);
         ErrorResponse errorResponse = buildErrorResponse(
-                HttpStatus.NOT_FOUND,
+                HttpStatus.BAD_REQUEST,
                 ex.getMessage(),
                 request.getRequestURI()
         );
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(errorResponse);
 
     }
