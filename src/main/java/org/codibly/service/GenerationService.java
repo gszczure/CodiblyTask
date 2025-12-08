@@ -156,8 +156,9 @@ public class GenerationService {
         for (int i = 0; i <= entries.size() - windowSize; i++) {
             List<GenerationEntry> windowEntries = entries.subList(i, i + windowSize);
             double avgClean = windowEntries.stream()
-                    .flatMap(this::cleanEnergyStream)
-                    .mapToDouble(GenerationEntry.FuelMix::perc)
+                    .mapToDouble(entry -> cleanEnergyStream(entry)
+                            .mapToDouble(GenerationEntry.FuelMix::perc)
+                            .sum())
                     .average()
                     .orElse(0.0);
 
