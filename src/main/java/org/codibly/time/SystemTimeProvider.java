@@ -21,11 +21,6 @@ public class SystemTimeProvider implements TimeProvider {
     }
 
     @Override
-    public ZonedDateTime getZonedDateTime() {
-        return ZonedDateTime.now(clock);
-    }
-
-    @Override
     public LocalDate getLocalDate() {
         return LocalDate.now(clock);
     }
